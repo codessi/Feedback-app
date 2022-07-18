@@ -9,19 +9,12 @@ const FeedbackForm = () => {
   const [message, setMessage] = useState("")
   const [rating, setRating] = useState(10)
 
+// what are we doing with rating... 
+  // on send button it will create an object
+  // rating and text
+  
 
-// adding rating select
-// add state of rating   10 [v]
-  // crate RatingSelect.jsx and import[v]
-  // put right under the input[v]
-  // goto ratingselect.jsx [v]
-  // make state of select[v]
-  // add jsx
-  // ul class rating
-  // li input type radio id num1 name rating value 1 onChange{handleChange}
-  // checked={selected ===1 }
-  // label tag htmlFor="num1"
-  // make 10 of them 
+
   const handleChange = (event) => {
 
     if (text === "") {
@@ -40,11 +33,21 @@ const FeedbackForm = () => {
     console.log(text)
   }
 
+  const handleSubmit = (event) => {
+    event.preventDefault()
+    // take the e.target.value 
+    // add to an object
+    /// {id:{feedback.length}, rating: {rating}, text: {text}}
+    // setFeedback 
+  }
+  
+
   return (
     <Card>
-      <form>
+      <form onSubmit={handleSubmit}>
         <h2>How would you rate your service with us?</h2>
-        <RatingSelect />
+      
+        <RatingSelect select={(selected) => setRating(selected)}/>
         <div className="input-group">
           <input type="text" placeholder='Write a review' onChange={handleChange} value={text} />
           <Button type='submit' isDisabled={btnDisabled} >Send</Button>
