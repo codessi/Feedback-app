@@ -19,7 +19,7 @@ const App = () => {
   const addFeedBack = (newItem) => {
     setFeedback(previous => {
       return (
-        {...previous,newItem}
+        [...previous,newItem]
     )})
   }
   return (

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { v4 as uuidv4 } from "uuid";
 import Card from "./shared/Card";
 import Button from "./shared/Button";
 import RatingSelect from "./RatingSelect";
@@ -8,16 +9,14 @@ const FeedbackForm = ({ feedback, addFeedBack }) => {
   const [btnDisabled, setBtnDisabled] = useState(true);
   const [message, setMessage] = useState("");
   const [rating, setRating] = useState(10);
+  const [selected, setSelected] = useState(10);
 
-  // what are we doing with rating...
-  // on send button it will create an object
-  // rating and text
 
   const handleChange = (event) => {
     if (text === "") {
       setBtnDisabled(true);
       setMessage("");
-    } else if (text !== "" && text.trim.length <= 10) {
+    } else if (text !== "" && text.trim().length <= 10) {
       setMessage("Text must be at least 10 characters");
       setBtnDisabled(true);
     } else {
@@ -34,23 +33,27 @@ const FeedbackForm = ({ feedback, addFeedBack }) => {
     event.preventDefault();
 
     const newItem = {
-      id: feedback(feedback.length-1).id+1,
+      id: uuidv4(),
       rating: rating,
       text: text,
     };
-    addFeedBack(newItem)
- 
+    addFeedBack(newItem);
+    setRating(10);
+    setText("");
+    setSelected(10);
   };
-
-  // realtime validation is not wokring
-  //
 
   return (
     <Card>
       <form onSubmit={handleSubmit}>
         <h2>How would you rate your service with us?</h2>
 
-        <RatingSelect select={(selected) => setRating(selected)} />
+        <RatingSelect
+          select={(selected) => setRating(selected)}
+          selected={selected}
+          setSelected={setSelected}
+        />
+        {/* I want to set selected to 10 */}
         <div className="input-group">
           <input
             type="text"
