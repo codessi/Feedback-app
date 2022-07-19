@@ -1,21 +1,13 @@
 import React from "react";
-import { Navigate, useNavigate, Link} from "react-router-dom";
+import { Navigate, useNavigate, Link, Routes, Route} from "react-router-dom";
 
-// navigate 
-// import navigate [x]
-// const status 200 [v]
-// if status 404 redirect / navigate[x]
-// return Navigate component to '/notfound'[v]
-// make button[]
-// onclick  make function
-// conosle.log (hello)
-// import useNavigate
-// const navigate = useNaviate()
-// insert in function navigate('/about')
-// change to 200 status
-// click the button 
-// button you gotta use useNaviate
-// N
+// post show
+// routes route  import [x]
+// jsx Routes route pat '/show[]
+// goto app and post/*
+// element h1 hellow world
+// post/show vs post
+// remember the * or error
 
 
 const Post = () => {
@@ -34,7 +26,13 @@ const Post = () => {
     <div>
       <h3>Post </h3>
       <button onClick={onClick}>click</button>
-      <Link to ="/about"><h3>about</h3></Link>
+      <Link to="/about"><h3>about</h3></Link>
+      <Routes>
+        <Route path = "/show" element={<h2>hello world</h2>}>
+
+        </Route>
+      </Routes>
+      
     </div>
   );
 };

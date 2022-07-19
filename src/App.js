@@ -53,7 +53,7 @@ const App = () => {
             ></Route>
 
             <Route path="/about" element={<AboutPage />} />
-            <Route path= "/post" element={<Post />} /> 
+            <Route path= "/post/*" element={<Post />} /> 
           </Routes>
 
           <AboutIconLink />
