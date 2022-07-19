@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 const AboutIconLink = () => {
 // replace string on to=
   // object pathname = '/about'
-  
+
 
   return (
     <div className='about-link'>
@@ -17,3 +17,4 @@ const AboutIconLink = () => {
 }
 
 export default AboutIconLink
+// new stuff
