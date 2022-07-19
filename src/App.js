@@ -19,16 +19,17 @@ const App = () => {
   const addFeedBack = (newItem) => {
     setFeedback(previous => {
       return (
-        [...previous,newItem]
+        [newItem,...previous]
     )})
   }
   return (
     <>  
       <Header /> 
       <div className="container">
+      <FeedbackForm feedback={feedback} addFeedBack={addFeedBack} />
         <FeedbackStats feedback ={feedback} />
         <FeedbackList feedback={feedback} handleDelete={deleteFeedback} />
-        <FeedbackForm feedback={feedback} addFeedBack={addFeedBack} />
+       
         
       </div>
     </>
