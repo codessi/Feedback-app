@@ -8,6 +8,7 @@ import FeedbackForm from "./component/FeedbackForm";
 import AboutPage from "./pages/AboutPage";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import AboutIconLink from "./component/AboutIconLink";
+import Post from "./component/Post";
 
 const App = () => {
  // nev link
@@ -52,7 +53,9 @@ const App = () => {
             ></Route>
 
             <Route path="/about" element={<AboutPage />} />
+            <Route path= "/post" element={<Post />} /> 
           </Routes>
+
           <AboutIconLink />
         </div>
       </Router>
