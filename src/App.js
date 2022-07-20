@@ -9,11 +9,12 @@ import AboutPage from "./pages/AboutPage";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import AboutIconLink from "./component/AboutIconLink";
 import Post from "./component/Post";
+import { FeedbackProvider } from "./context/FeedbackContext";
 
 const App = () => {
- // nev link
-  // 
-  
+  // nev link
+  //
+
   const [feedback, setFeedback] = useState(FeedbackData);
 
   const deleteFeedback = (id) => {
@@ -33,32 +34,37 @@ const App = () => {
   };
   return (
     <>
-      <Router>
-        <Header />
-        <div className="container">
-          <Routes>
-            <Route
-              exact
-              path="/"
-              element={
-                <>
-                  <FeedbackForm feedback={feedback} addFeedBack={addFeedBack} />
-                  <FeedbackStats feedback={feedback} />
-                  <FeedbackList
-                    feedback={feedback}
-                    handleDelete={deleteFeedback}
-                  />
-                </>
-              }
-            ></Route>
+      <FeedbackProvider>
+        <Router>
+          <Header />
+          <div className="container">
+            <Routes>
+              <Route
+                exact
+                path="/"
+                element={
+                  <>
+                    <FeedbackForm
+                      feedback={feedback}
+                      addFeedBack={addFeedBack}
+                    />
+                    <FeedbackStats feedback={feedback} />
+                    <FeedbackList
+                      feedback={feedback}
+                      handleDelete={deleteFeedback}
+                    />
+                  </>
+                }
+              ></Route>
 
-            <Route path="/about" element={<AboutPage />} />
-            <Route path= "/post/*" element={<Post />} /> 
-          </Routes>
+              <Route path="/about" element={<AboutPage />} />
+              <Route path="/post/*" element={<Post />} />
+            </Routes>
 
-          <AboutIconLink />
-        </div>
-      </Router>
+            <AboutIconLink />
+          </div>
+        </Router>
+      </FeedbackProvider>
     </>
   );
 };
