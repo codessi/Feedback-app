@@ -1,17 +1,21 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { v4 as uuidv4 } from "uuid";
 import Card from "./shared/Card";
 import Button from "./shared/Button";
 import RatingSelect from "./RatingSelect";
+import FeedbackContext from "../context/FeedbackContext";
 
-const FeedbackForm = ({ feedback, addFeedBack }) => {
+
+
+const FeedbackForm = () => {
   const [text, setText] = useState("");
   const [btnDisabled, setBtnDisabled] = useState(true);
   const [message, setMessage] = useState("");
   const [rating, setRating] = useState(10);
   const [selected, setSelected] = useState(10);
-
-
+  
+  const { addFeedBack } = useContext(FeedbackContext)
+   
   const handleChange = (event) => {
     if (text === "") {
       setBtnDisabled(true);
@@ -33,7 +37,7 @@ const FeedbackForm = ({ feedback, addFeedBack }) => {
     event.preventDefault();
 
     const newItem = {
-      id: uuidv4(),
+      id: uuidv4(), 
       rating: rating,
       text: text,
     };
