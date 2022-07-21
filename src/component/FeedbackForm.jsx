@@ -2,7 +2,6 @@
 import React, { useState, useEffect, useContext } from "react";
 // @ts-ignore
 // @ts-ignore
-import { v4 as uuidv4 } from "uuid";
 import Card from "./shared/Card";
 import Button from "./shared/Button";
 import RatingSelect from "./RatingSelect";

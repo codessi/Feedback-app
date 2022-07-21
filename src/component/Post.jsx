@@ -18,8 +18,8 @@ const Post = () => {
     return <Navigate to="/pagenotfound" />
   }
   const onClick = () => {
-    console.log("hello")
-    // navigate('/about')
+    // console.log("hello")
+    navigate('/about')
     return <Link to="/pagenotfound" />
   }
   return (
