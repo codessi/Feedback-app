@@ -9,6 +9,8 @@ export const FeedbackProvider = ({ children }) => {
   const [feedback, setFeedback] = useState([]);
   const [isLoading, setIsLoading] = useState(true)
 
+// goto delete
+
   useEffect(() => { 
     fetchFeedback()
   }, [])
@@ -30,8 +32,15 @@ export const FeedbackProvider = ({ children }) => {
     edit: false,
   });
 
-  const deleteFeedback = (id) => {
+  const deleteFeedback = async(id) => {
     if (window.confirm("Arey you sure you want to delete?")) {
+      // make it sync and await
+      // await fetch delete
+      // add header & stuff
+      
+        await fetch('https://jsonplaceholder.typicode.com/posts/1', { method: 'DELETE' });
+        setStatus('Delete successful');
+    
       setFeedback(
         feedback.filter((item) => {
           return item.id !== id;
