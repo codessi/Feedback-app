@@ -3,26 +3,12 @@ import FeedbackData from "../data/FeedbackData";
 import { v4 as uuidv4 } from "uuid";
 
 const FeedbackContext = createContext({});
-// fetch the data & put in to feedback
-// emty out state [x]
-// useEffect  [v]
-// add function, [v]
-// add console.log(123) [v]
-// fetch async function feedback   [v]
 
-//await fetch("endpoint") add ?_sort=id&_order=desc assign to response []
-// response.json assign to data [v]
-// console.log data [v]
-// run the feedback in useEffect [v]
-// setState [v]
-// add is loading for true [v]
-// and setLoading to false end of useEffect [v]
-// add isLoading to value to display spinner [v]
 
 
 export const FeedbackProvider = ({ children }) => {
   const [feedback, setFeedback] = useState([]);
-  const [loading, setLoading] = useState(true)
+  const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => { 
     fetchFeedback()
@@ -32,7 +18,7 @@ export const FeedbackProvider = ({ children }) => {
     const response = await fetch("http://localhost:5000/feedback?_sort=id&_order=desc")
     const data = await response.json()
     setFeedback(data)
-    setLoading(false)
+    setIsLoading(false)
   }
 
   const updateFeedback = (id, updItem) => {
@@ -78,6 +64,8 @@ export const FeedbackProvider = ({ children }) => {
         addFeedBack,
         editFeedback,
         updateFeedback,
+        isLoading,
+        setIsLoading,
       }}
     >
       {children}

@@ -13,7 +13,9 @@ import { FeedbackProvider } from "./context/FeedbackContext";
 
 const App = () => {
 
-// goto context 
+// create assets folder [x]
+  // spinner gif file [x]
+  // goto feebacklist []
 
   return (
     <>
