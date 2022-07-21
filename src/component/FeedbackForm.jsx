@@ -17,7 +17,7 @@ const FeedbackForm = () => {
 
 
 
-  // @ts-ignore
+
   const { addFeedBack, feedbackEdit, updateFeedback } =
     useContext(FeedbackContext);
 
@@ -31,7 +31,7 @@ const FeedbackForm = () => {
       setRating(feedbackEdit.item.rating);
     }
   }, [feedbackEdit]);
-  // @ts-ignore
+
 
   const handleChange = (event) => {
     if (text === "") {

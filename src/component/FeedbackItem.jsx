@@ -7,7 +7,7 @@ import FeedbackContext from "../context/FeedbackContext";
 const FeedbackItem = ({ item }) => {
 
 
-  // @ts-ignore
+
   const { deleteFeedback, editFeedback } = useContext(FeedbackContext);
   return (
     <Card>
