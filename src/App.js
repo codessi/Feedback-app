@@ -13,7 +13,7 @@ import { FeedbackProvider } from "./context/FeedbackContext";
 
 const App = () => {
 
-// go to context
+// go to context[x]
   return (
     <>
       <FeedbackProvider>

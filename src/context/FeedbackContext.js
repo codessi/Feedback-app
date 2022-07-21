@@ -1,6 +1,5 @@
 import React, { createContext, useEffect, useState } from "react";
 import FeedbackData from "../data/FeedbackData";
-import { v4 as uuidv4 } from "uuid";
 
 const FeedbackContext = createContext({});
 
@@ -11,16 +10,16 @@ export const FeedbackProvider = ({ children }) => {
   const [isLoading, setIsLoading] = useState(true)
 
   // add proxy---
-  // pkg  above dependancy proxy add url []
-  // go to addFeedback
-  // turn the function to async await
-  // response assign fetch passing /feeback, object
-  // include method headers
-  // body  wrap  newFeedback with JSON.stringify
+  // pkg  above dependancy proxy add url [x]
+  // go to addFeedback [x]
+  // turn the function to async await [x]
+  // response assign fetch passing /feeback, object [x]
+  // include method headers [x]
+  // body  wrap  newFeedback with JSON.stringify [x]
   //  ** .json()  
-  // delete uuid since json-server gives uid
-  // data assign response.json()
-  // setFeedback pass data and ...feedback
+  // delete uuid since json-server gives uid  [x]
+  // data assign response.json()  []
+  // setFeedback pass data and ...feedback  []
   //
 
   useEffect(() => { 
@@ -54,12 +53,25 @@ export const FeedbackProvider = ({ children }) => {
     }
   };
 
-  const addFeedBack = (newItem) => {
-    newItem.id = uuidv4()
-    setFeedback((previous) => {
-      return [newItem, ...previous];
-    });
+  const addFeedBack = async(newItem) => {
+    const response = await fetch('/feedback', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(newItem)
+    })
+    const data = await response.json() 
+
+    setFeedback(
+      return [data, ...feeback];
+    );
+
+    
   };
+
+
 
   const editFeedback = (item) => {
     setFeedbackEdit({
