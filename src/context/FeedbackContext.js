@@ -1,13 +1,21 @@
 import React, { createContext, useState } from "react";
 import FeedbackData from "../data/FeedbackData";
+import { v4 as uuidv4 } from "uuid";
 
 const FeedbackContext = createContext({});
-// update feedbackitem 
-// const function called updateFeedback passing id, updItem  and console.log
-// add to value 
-// goto form
+// update feedbackitem
+// const function called updateFeedback passing id, updItem  and console.log [v]
+// add to value [v]
+// goto form [v]
+
+
 export const FeedbackProvider = ({ children }) => {
   const [feedback, setFeedback] = useState(FeedbackData);
+
+  const updateFeedback = (id, updItem) => {
+    setFeedback(
+    feedback.map(item => item.id === id ? {...item, ...updItem}: item) )
+  }
 
   const [feedbackEdit, setFeedbackEdit] = useState({
     item: {},
@@ -25,11 +33,10 @@ export const FeedbackProvider = ({ children }) => {
   };
 
   const addFeedBack = (newItem) => {
+    newItem.id = uuidv4()
     setFeedback((previous) => {
       return [newItem, ...previous];
     });
-    // take the newItem and add to to previous
-    // but when to edit we gotta find the same id and 
   };
 
   const editFeedback = (item) => {
@@ -43,10 +50,11 @@ export const FeedbackProvider = ({ children }) => {
     <FeedbackContext.Provider
       value={{
         feedback,
+        feedbackEdit,
         deleteFeedback,
         addFeedBack,
-        feedbackEdit,
         editFeedback,
+        updateFeedback,
       }}
     >
       {children}
