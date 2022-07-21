@@ -10,6 +10,19 @@ export const FeedbackProvider = ({ children }) => {
   const [feedback, setFeedback] = useState([]);
   const [isLoading, setIsLoading] = useState(true)
 
+  // add proxy---
+  // pkg  above dependancy proxy add url []
+  // go to addFeedback
+  // turn the function to async await
+  // response assign fetch passing /feeback, object
+  // include method headers
+  // body  wrap  newFeedback with JSON.stringify
+  //  ** .json()  
+  // delete uuid since json-server gives uid
+  // data assign response.json()
+  // setFeedback pass data and ...feedback
+  //
+
   useEffect(() => { 
     fetchFeedback()
   }, [])
