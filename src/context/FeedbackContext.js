@@ -65,7 +65,7 @@ export const FeedbackProvider = ({ children }) => {
     const data = await response.json() 
 
     setFeedback(
-      return [data, ...feeback];
+     [data, ...feedback]
     );
 
     
