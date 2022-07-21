@@ -1,4 +1,6 @@
+// @ts-ignore
 import React, { useState, useEffect, useContext } from "react";
+// @ts-ignore
 import { v4 as uuidv4 } from "uuid";
 import Card from "./shared/Card";
 import Button from "./shared/Button";
@@ -9,12 +11,33 @@ import FeedbackContext from "../context/FeedbackContext";
 
 const FeedbackForm = () => {
   const [text, setText] = useState("");
-  const [btnDisabled, setBtnDisabled] = useState(true);
+  const [btnDisabled, setBtnDisabled] = useState(true); 
   const [message, setMessage] = useState("");
   const [rating, setRating] = useState(10);
   const [selected, setSelected] = useState(10);
-  
-  const { addFeedBack } = useContext(FeedbackContext)
+
+  //bring updateFeedback
+  //call it on Submit
+  // if feedbackEdit.edit === true call the updateFeedback() pass feedbackEdit.item.id and newFeedback
+  //else  just add
+  // click and test
+  //change console to map the all the feedback and each item's id is same as it padd it then 
+
+  const { addFeedBack, feedbackEdit } = useContext(FeedbackContext)
+
+  // bring in RatingSelect
+
+  useEffect(() => {
+    if (feedbackEdit.edit === true) {
+
+      setBtnDisabled(false)
+      setText(feedbackEdit.item.text)
+      setSelected(feedbackEdit.item.rating)
+      setRating(feedbackEdit.item.rating)
+   }
+  }, [feedbackEdit])
+  // @ts-ignore
+
    
   const handleChange = (event) => {
     if (text === "") {
@@ -35,7 +58,8 @@ const FeedbackForm = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-
+    // new item is getting from states and add id to it.  pacage as newItem
+    //  pass to addFeedBack
     const newItem = {
       id: uuidv4(), 
       rating: rating,
