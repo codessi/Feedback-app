@@ -17,10 +17,15 @@ const FeedbackForm = () => {
 
 
 
-  const { addFeedBack, feedbackEdit, updateFeedback } =
+  const { addFeedBack, feedbackEdit, setFeedbackEdit, updateFeedback } =
     useContext(FeedbackContext);
 
-  // bring in RatingSelect
+  // when feedbackEdit is changing
+  // effect will check the .edit is true
+  // and button will be alive
+  // update the text input to be text from the state
+  // selected will be alos updateds
+  // then when it's submited
 
   useEffect(() => {
     if (feedbackEdit.edit === true) {
@@ -51,6 +56,14 @@ const FeedbackForm = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    // when submiited
+    // it will check the text is long enough
+    // and checks edit is true
+    //  then it will call updateFeeback
+    // what happen is it will map all the feed back, but if the id is same as the edit id it will comebine current item and upateitem
+    // since id is same it will leave along but other stuff if different it will replace
+    // problem is here
+    // after then it will add new one bu not update m.... 
     if (text.trim().length > 10) {
       const newFeedback = {
         text,
@@ -59,6 +72,14 @@ const FeedbackForm = () => {
 
       if (feedbackEdit.edit === true) {
         updateFeedback(feedbackEdit.item.id, newFeedback);
+        setText("");
+        setSelected(null);
+        setFeedbackEdit({
+          item: {},
+          edit: false,
+        })
+        
+        return
       }
 
       // const newItem = {

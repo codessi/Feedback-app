@@ -7,7 +7,13 @@ const FeedbackContext = createContext({});
 
 export const FeedbackProvider = ({ children }) => {
   const [feedback, setFeedback] = useState([]);
+
   const [isLoading, setIsLoading] = useState(true)
+
+  const [feedbackEdit, setFeedbackEdit] = useState({
+    item: {},
+    edit: false,
+  });
 
 // goto delete
 
@@ -27,10 +33,7 @@ export const FeedbackProvider = ({ children }) => {
     feedback.map(item => item.id === id ? {...item, ...updItem}: item) )
   }
 
-  const [feedbackEdit, setFeedbackEdit] = useState({
-    item: {},
-    edit: false,
-  });
+
 
   const deleteFeedback = async(id) => {
     if (window.confirm("Arey you sure you want to delete?")) {
@@ -70,6 +73,9 @@ export const FeedbackProvider = ({ children }) => {
   };
 
 
+// this function will take the item 
+  // update the state of feedbackedit
+  // with item and edit to be true.
 
   const editFeedback = (item) => {
     setFeedbackEdit({
@@ -83,6 +89,7 @@ export const FeedbackProvider = ({ children }) => {
       value={{
         feedback,
         feedbackEdit,
+        setFeedbackEdit,
         deleteFeedback,
         addFeedBack,
         editFeedback,
