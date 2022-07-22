@@ -6,15 +6,16 @@ import FeedbackContext from "../context/FeedbackContext";
 import Spinner from "./shared/Spinner";
 
 const FeedbackList = () => {
-
   const { feedback, isLoading } = useContext(FeedbackContext);
 
   if (!isLoading && (!feedback || feedback.length === 0)) {
     return <p>no feed back yet</p>;
-  } 
-  
-  return  isLoading ? (<Spinner />) : 
-     (<div className="feedback-list">
+  }
+
+  return isLoading ? (
+    <Spinner />
+  ) : (
+    <div className="feedback-list">
       <AnimatePresence>
         {feedback.map((item) => {
           return (
@@ -29,8 +30,8 @@ const FeedbackList = () => {
           );
         })}
       </AnimatePresence>
-    </div>)
-
+    </div>
+  );
 };
 
 export default FeedbackList;

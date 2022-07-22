@@ -1,6 +1,6 @@
 import React from "react";
 import Header from "./component/Header";
-// import FeedbackItem from "./component/FeedbackItem"
+
 
 import FeedbackList from "./component/FeedbackList";
 import FeedbackStats from "./component/FeedbackStats";
@@ -13,7 +13,7 @@ import { FeedbackProvider } from "./context/FeedbackContext";
 
 const App = () => {
 
-// go to context[x]
+
   return (
     <>
       <FeedbackProvider>

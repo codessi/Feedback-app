@@ -3,49 +3,40 @@ import FeedbackData from "../data/FeedbackData";
 
 const FeedbackContext = createContext({});
 
-
-
 export const FeedbackProvider = ({ children }) => {
   const [feedback, setFeedback] = useState([]);
 
-  const [isLoading, setIsLoading] = useState(true)
+  const [isLoading, setIsLoading] = useState(true);
 
   const [feedbackEdit, setFeedbackEdit] = useState({
     item: {},
     edit: false,
   });
 
-// goto delete
+  useEffect(() => {
+    fetchFeedback();
+  }, []);
 
-  useEffect(() => { 
-    fetchFeedback()
-  }, [])
-
-  const fetchFeedback = async() => {
-    const response = await fetch("http://localhost:5000/feedback?_sort=id&_order=desc")
-    const data = await response.json()
-    setFeedback(data)
-    setIsLoading(false)
-  }
+  const fetchFeedback = async () => {
+    const response = await fetch(
+      "http://localhost:5000/feedback?_sort=id&_order=desc"
+    );
+    const data = await response.json();
+    setFeedback(data);
+    setIsLoading(false);
+  };
 
   const updateFeedback = (id, updItem) => {
     setFeedback(
-    feedback.map(item => item.id === id ? {...item, ...updItem}: item) )
-  }
+      feedback.map((item) => (item.id === id ? { ...item, ...updItem } : item))
+    );
+  };
 
-
-
-  const deleteFeedback = async(id) => {
+  const deleteFeedback = async (id) => {
     if (window.confirm("Arey you sure you want to delete?")) {
-      // make it sync and await
-      // await fetch delete
-      // add header & stuff
-      
-      const response = await fetch(`/feedback/${id}`, { method: 'DELETE' });
-      const data = response.json()
+      const response = await fetch(`/feedback/${id}`, { method: "DELETE" });
+      const data = response.json();
 
-      // setFeedback(data)
-  
       setFeedback(
         feedback.filter((item) => {
           return item.id !== id;
@@ -54,28 +45,19 @@ export const FeedbackProvider = ({ children }) => {
     }
   };
 
-  const addFeedBack = async(newItem) => {
-    const response = await fetch('/feedback', {
-      method: 'POST',
+  const addFeedBack = async (newItem) => {
+    const response = await fetch("/feedback", {
+      method: "POST",
       headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
+        Accept: "application/json",
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify(newItem)
-    })
-    const data = await response.json() 
+      body: JSON.stringify(newItem),
+    });
+    const data = await response.json();
 
-    setFeedback(
-     [data, ...feedback]
-    );
-
-    
+    setFeedback([data, ...feedback]);
   };
-
-
-// this function will take the item 
-  // update the state of feedbackedit
-  // with item and edit to be true.
 
   const editFeedback = (item) => {
     setFeedbackEdit({
