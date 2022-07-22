@@ -38,9 +38,11 @@ export const FeedbackProvider = ({ children }) => {
       // await fetch delete
       // add header & stuff
       
-        await fetch('https://jsonplaceholder.typicode.com/posts/1', { method: 'DELETE' });
-        setStatus('Delete successful');
-    
+      const response = await fetch(`/feedback/${id}`, { method: 'DELETE' });
+      const data = response.json()
+
+      // setFeedback(data)
+  
       setFeedback(
         feedback.filter((item) => {
           return item.id !== id;
