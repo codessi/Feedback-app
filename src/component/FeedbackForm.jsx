@@ -72,22 +72,17 @@ const FeedbackForm = () => {
 
       if (feedbackEdit.edit === true) {
         updateFeedback(feedbackEdit.item.id, newFeedback);
-        setText("");
-        setSelected(null);
         setFeedbackEdit({
           item: {},
           edit: false,
         })
-        
-        return
+   
+      } else {
+        addFeedBack(newFeedback);
       }
 
-      // const newItem = {
-      //   id: uuidv4(),
-      //   rating: rating,
-      //   text: text,
-      // };
-      addFeedBack(newFeedback);
+  
+      
       setRating(10);
       setText("");
       setSelected(null);
